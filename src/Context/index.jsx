@@ -1,13 +1,23 @@
-import {usaState, createContext} from 'react'
+import {useState, createContext} from 'react'
 
-const dataContext = createContext();
+export const dataContext = createContext();
 
 
 
-export function dataContextPrivider({children}) {
+
+
+export const  DataContextPrivider = ({children})=> {
+
+    const [monthInfo, setmonthInfo] = useState([])
   return (
-    <dataContext.Provider >
+    <dataContext.Provider value={
+        {
+          monthInfo,
+          setmonthInfo
+        }
+    }>
         {children}
     </dataContext.Provider>
   )
 }
+ 

@@ -1,18 +1,17 @@
 import { useState } from 'react'
 import React from 'react'
-import { dataContextPrivider } from './Context';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import Layout from './componentes/Layout';
 import AboutMe from './view/AboutMe';
 import Home from './view/Home';
 import NavBar from './componentes/NavBar'
-
+import {DataContextPrivider} from './context'
 function App() {
 
 
   return (
     <>
-      <dataContextPrivider>
+     <DataContextPrivider>
         <BrowserRouter>
           <NavBar />
 
@@ -24,7 +23,7 @@ function App() {
           </Routes>
 
         </BrowserRouter >
-      </dataContextPrivider>
+      </DataContextPrivider>
     </>
   )
 };
