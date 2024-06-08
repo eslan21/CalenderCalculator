@@ -7,6 +7,11 @@ const DiaLayout = ({ dia }) => {
          isHoliday: false,
          workHour:'',
        }
+
+       console.log(dia.actualDayInMonth)
+       if(dia.actualDayInMonth==0){
+         return <div></div>
+       }
   
    return (
 
@@ -14,7 +19,7 @@ const DiaLayout = ({ dia }) => {
       <div className="bg-white  rounded shadow-md grid grid-cols-3 gap-2  p-1">
          <div className="col-span-3 border grid grid-cols-3 ">
             <div className="">
-               <p>{dia||0}</p>
+               <p>{dia.actualDayInMonth}</p>
             </div>
             <div className="col-span-2 text-center flex justify-center gap-2">
                <label >H</label>

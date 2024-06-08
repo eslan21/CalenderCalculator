@@ -1,5 +1,5 @@
 import DiaLayout from '../../componentes/DiaLayout'
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, Fragment } from 'react';
 import { dataContext } from '../../context';
 import { getDayInformation } from '../../utilities/menu'  //informacion de los dias
 import dayjs from 'dayjs'
@@ -13,81 +13,57 @@ const Home = () => {
     const contexto = useContext(dataContext)
     ///UseEffect
     useEffect(() => {
-        const daysArray = [];
-        for (let i = 1; i <= daysInMonth; i++) {
-            daysArray.push(i);
-        }
+        let daysArray = [];
+        let callUtiliti = getDayInformation
 
+        for (let i = 1; i <= daysInMonth; i++) {
+            daysArray.push({
+               
+                daysInMonth: callUtiliti(i).daysInMonth,
+                actualDayInMonth: callUtiliti(i).actualDayInMonth,
+                dayinWeek: callUtiliti(i).dayinWeek,
+                fullData: callUtiliti(i).fullData,
+                
+            });
+        }
+        if (daysArray[0].dayinWeek !== 1) {
+            let itera = daysArray[0].dayinWeek - 1
+            for (let i = 0; i < itera; i++) {
+
+                daysArray.unshift({
+                    actualDayInMonth: 0,
+                })
+
+            }
+        }
         setDasysMonthArray(daysArray);
+
+
     }, [daysInMonth]);
-    console.log(dayjs().toDate())
+
 
     return (
         <>
-            <>
-                <div className="grid grid-cols-1 md:grid-cols-7 grid-rows-5 gap-4 p-4">
-                    <div>
-                        <p>Monday</p>
 
-                        {daysMonthArray.map((item, index) => {
-
-                            if (getDayInformation(item).dayinWeek === 1) {
-
-                                return <DiaLayout key={index} dia={item} />
-
-                            }
-                        })}
-                    </div>
-                    <div>
-                        <p>Tuesday</p>
-                        {
-
-                        daysMonthArray.map((item, index) => {
-                            if (getDayInformation(item).dayinWeek === 2)
-                                return <DiaLayout key={index} dia={item} />
-                        })}
-                    </div>
-                    <div>
-                        <p>Wednesday</p>
-                        {daysMonthArray.map((item, index) => {
-                            if (getDayInformation(item).dayinWeek === 3)
-                                return <DiaLayout key={index} dia={item} />
-                        })}
-                    </div>
-                    <div>
-                        <p>Thursday</p>
-                        {daysMonthArray.map((item, index) => {
-                            if (getDayInformation(item).dayinWeek === 4)
-                                return <DiaLayout key={index} dia={item} />
-                        })}
-                    </div>
-                    <div>
-                        <p>Friday</p>
-                        {daysMonthArray.map((item, index) => {
-                            if (getDayInformation(item).dayinWeek === 5)
-                                return <DiaLayout key={index} dia={item} />
-                        })}
-                    </div>
-                    <div>
-                        <p>Saturday</p>
-                        {daysMonthArray.map((item, index) => {
-                            if (getDayInformation(item).dayinWeek === 6)
-                                return <DiaLayout key={index} dia={item} />
-                        })}
-                    </div>
-                    <div>
-                        <p>Sunday</p>
-                        {daysMonthArray.map((item, index) => {
-                            if (getDayInformation(item).dayinWeek === 0)
-                                return <DiaLayout key={index} dia={item} />
-                        })}
-                    </div>
-
-                    {/*daysMonthArray.map((item, index) => (
-                        <DiaLayout key={index} dia={item} />
-                    ))*/}
+            <div className="grid grid-cols-1 grid-flow-2    gap-4 p-4">
+                <div className='grid grid-cols-7'>
+                    <p>Monday</p>
+                    <p>Tuesday</p>
+                    <p>Wednesday</p>
+                    <p>Thursday</p>
+                    <p>Friday</p>
+                    <p>Saturday</p>
+                    <p>Sunday</p>
                 </div>
-            </>
+                <div className='grid grid-cols-7'>
+                    {
+                        daysMonthArray.map((item, index) => {
+                            return<DiaLayout key={index} dia={item} />
+                        })
+                    }
+                </div>
+            </div>
+
 
         </>
     )
