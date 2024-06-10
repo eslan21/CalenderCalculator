@@ -5,6 +5,7 @@ import { getDayInformation } from '../../utilities/menu'  //informacion de los d
 import dayjs from 'dayjs'
 
 
+
 //Quedamos en que hay que pasarle los datos al componente diaLayout 
 const Home = () => {
     //Variable
@@ -37,7 +38,7 @@ const Home = () => {
             }
         }
         setDasysMonthArray(daysArray);
-
+        
 
     }, [daysInMonth]);
 
@@ -46,7 +47,7 @@ const Home = () => {
         <>
 
             <div className="grid grid-cols-1 grid-flow-2    gap-4 p-4">
-                <div className='grid grid-cols-7'>
+                <div className='md:grid md:grid-cols-7 hidden'>
                     <p>Monday</p>
                     <p>Tuesday</p>
                     <p>Wednesday</p>
@@ -55,7 +56,7 @@ const Home = () => {
                     <p>Saturday</p>
                     <p>Sunday</p>
                 </div>
-                <div className='grid grid-cols-7'>
+                <div className='grid grid-cols-1 md:grid-cols-7'>
                     {
                         daysMonthArray.map((item, index) => {
                             return<DiaLayout key={index} dia={item} />
