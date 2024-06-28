@@ -12,7 +12,7 @@ const NavBar = ()=>{
     return (
         <>
         <nav className="flex justify-between items-center bg-gray-800 p-4 shadow-lg">
-        <div className="text-white text-xl font-bold">Brand</div>
+        <div className="text-white text-xl font-bold">Calender Calculator</div>
         <ul className="hidden md:flex space-x-8">
             <li><Link to="/" className="text-white hover:text-yellow-400 transition duration-300">Home</Link></li>
             
